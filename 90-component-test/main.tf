@@ -1,4 +1,4 @@
-module "component-test" {           #sess-46
+module "component" {           #sess-46
     source = "../tform-robo-component"
     component = var.component
     rule_priority = var.rule_priority 
