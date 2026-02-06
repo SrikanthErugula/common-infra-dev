@@ -151,14 +151,14 @@ resource "aws_security_group_rule" "catalogue_backend_alb" {          # 8 sess-4
 } */
 
 # ##### User SG Rules #####
-# resource "aws_security_group_rule" "user_bastion" {
-#   type              = "ingress"
-#   security_group_id = local.user_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+resource "aws_security_group_rule" "user_bastion" {       #sess-46
+  type              = "ingress"
+  security_group_id = local.user_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 resource "aws_security_group_rule" "user_backend_alb" {   #sess-46
   type              = "ingress"
@@ -170,14 +170,14 @@ resource "aws_security_group_rule" "user_backend_alb" {   #sess-46
 }
 
 # ##### Cart SG Rules #####
-# resource "aws_security_group_rule" "cart_bastion" {
-#   type              = "ingress"
-#   security_group_id = local.cart_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+resource "aws_security_group_rule" "cart_bastion" {         #sess-46
+  type              = "ingress"
+  security_group_id = local.cart_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 resource "aws_security_group_rule" "cart_backend_alb" {       #sess-46
   type              = "ingress"
@@ -189,14 +189,14 @@ resource "aws_security_group_rule" "cart_backend_alb" {       #sess-46
 }
 
 ##### SHipping SG Rules #####
-# resource "aws_security_group_rule" "shipping_bastion" {
-#   type              = "ingress"
-#   security_group_id = local.shipping_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+resource "aws_security_group_rule" "shipping_bastion" {      #sess-46
+  type              = "ingress"
+  security_group_id = local.shipping_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 resource "aws_security_group_rule" "shipping_backend_alb" {   #sess-46
   type              = "ingress"
@@ -208,14 +208,14 @@ resource "aws_security_group_rule" "shipping_backend_alb" {   #sess-46
 }
 
 # ##### Payment SG Rules #####
-# resource "aws_security_group_rule" "payment_bastion" {
-#   type              = "ingress"
-#   security_group_id = local.payment_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+resource "aws_security_group_rule" "payment_bastion" {   # sess-46
+  type              = "ingress"
+  security_group_id = local.payment_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 resource "aws_security_group_rule" "payment_backend_alb" {         #sess-46 
   type              = "ingress"
@@ -226,14 +226,14 @@ resource "aws_security_group_rule" "payment_backend_alb" {         #sess-46
   to_port           = 8080
 }
 
-# resource "aws_security_group_rule" "payment_shipping" {
-#   type              = "ingress"
-#   security_group_id = local.payment_sg_id
-#   source_security_group_id = local.shipping_sg_id
-#   from_port         = 8080
-#   protocol          = "tcp"
-#   to_port           = 8080
-# }
+resource "aws_security_group_rule" "payment_shipping" {
+  type              = "ingress"
+  security_group_id = local.payment_sg_id
+  source_security_group_id = local.shipping_sg_id
+  from_port         = 8080
+  protocol          = "tcp"
+  to_port           = 8080
+}
 
 # ##### Backend ALB SG Rules #####
 # resource "aws_security_group_rule" "backend_alb_bastion" {
@@ -284,14 +284,14 @@ resource "aws_security_group_rule" "backend_alb_frontend" {       #sess-46
 
 ##### Frontend SG Rules #####
 
-# resource "aws_security_group_rule" "frontend_bastion" {
-#   type              = "ingress"
-#   security_group_id = local.frontend_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+resource "aws_security_group_rule" "frontend_bastion" {     #ses--46
+  type              = "ingress"
+  security_group_id = local.frontend_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 resource "aws_security_group_rule" "frontend_frontend_alb" {        #sess-46
   type              = "ingress"
@@ -312,6 +312,10 @@ resource "aws_security_group_rule" "frontend_alb_public" {         # 9 sess-45
   protocol          = "tcp"
   to_port           = 443
 }
+
+
+
+
 
 ##### Bastion SG Rules #####
 # resource "aws_security_group_rule" "bastion_laptop" {
