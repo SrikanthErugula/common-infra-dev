@@ -1,0 +1,53 @@
+# # Local .terraform directories
+# **/.terraform/*
+
+# # .tfstate files and backups (if using local state)
+# # Best practice is to use a remote backend for state management
+# *.tfstate
+# *.tfstate.*
+
+# # Crash log files
+# crash.log
+# crash.*.log
+
+# # Exclude all .tfvars files, which may contain sensitive data
+# # such as passwords or private keys. Use a secrets manager or
+# # environment variables for sensitive inputs.
+# *.tfvars
+# *.tfvars.json
+
+# # Ignore override files as they are usually for local development
+# # and should not be committed to shared version control.
+# override.tf
+# override.tf.json
+# *_override.tf
+# *_override.tf.json
+
+# # Ignore CLI configuration files
+# .terraformrc
+# terraform.rc
+
+# # Ignore lock file for providers (optional, often committed for consistency)
+# # **/.terraform.lock.hcl 
+
+
+#######################
+
+# Terraform generated files and directories
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*backup
+*.tfplan
+.tfvars
+.tfvars.json
+crash.log
+
+# Local overrides
+override.tf
+override.tf.json
+
+# Provider specific files (if any)
+# For example, if you're using AWS, you might have:
+# .aws/credentials
+
