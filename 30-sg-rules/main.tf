@@ -1,24 +1,4 @@
 
-#backend_alb is accepting traffic or connection from bastion 
-resource "aws_security_group_rule" "backend_alb_bastion" {          #1
-  type              = "ingress"
-  security_group_id = local.backend_alb_sg_id            # frontend SG ID   ---- # destination 
-  source_security_group_id = local.bastion_sg_id   # frontend ALB SG ID ---> # source
-  from_port         = 80
-  protocol          = "tcp"
-  to_port           = 80
-}
-
-#bastion is accepting traffic or connection from laptop
-resource "aws_security_group_rule" "bastion_laptop" {             #2
-  type              = "ingress"
-  security_group_id = local.bastion_sg_id
-   cidr_blocks = ["0.0.0.0/16"]     # frontend SG ID   ---- # destination 
-  from_port         = 22
-  protocol          = "tcp"
-  to_port           = 22
-}
-
 ################ MONGODB ###################
 
 #mongodb is accepting traffic or connection from bastion
@@ -236,11 +216,11 @@ resource "aws_security_group_rule" "payment_backend_alb" {                      
 
 # ##### Backend ALB SG Rules #####
 
-#backend_alb is accepting traffic or connection from bastion on port 80
-resource "aws_security_group_rule" "backend_alb_bastion" {
+#backend_alb is accepting traffic or connection from bastion  on port 80
+resource "aws_security_group_rule" "backend_alb_bastion" {          #1
   type              = "ingress"
-  security_group_id = local.backend_alb_sg_id
-  source_security_group_id = local.bastion_sg_id
+  security_group_id = local.backend_alb_sg_id            # frontend SG ID   ---- # destination 
+  source_security_group_id = local.bastion_sg_id   # frontend ALB SG ID ---> # source
   from_port         = 80
   protocol          = "tcp"
   to_port           = 80
@@ -333,41 +313,52 @@ resource "aws_security_group_rule" "bastion_laptop" {
   to_port           = 22
 }
 
-# resource "aws_security_group_rule" "open_vpn_public" {
-#   type              = "ingress"
-#   security_group_id = local.open_vpn_sg_id
-#   cidr_blocks = ["0.0.0.0/0"]
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
 
-# resource "aws_security_group_rule" "open_vpn_943" {
-#   type              = "ingress"
-#   security_group_id = local.open_vpn_sg_id
-#   cidr_blocks = ["0.0.0.0/0"]
-#   from_port         = 943
-#   protocol          = "tcp"
-#   to_port           = 943
-# }
 
-# resource "aws_security_group_rule" "open_vpn_443" {
-#   type              = "ingress"
-#   security_group_id = local.open_vpn_sg_id
-#   cidr_blocks = ["0.0.0.0/0"]
-#   from_port         = 443
-#   protocol          = "tcp"
-#   to_port           = 443
-# }
 
-# resource "aws_security_group_rule" "open_vpn_1194" {
-#   type              = "ingress"
-#   security_group_id = local.open_vpn_sg_id
-#   cidr_blocks = ["0.0.0.0/0"]
-#   from_port         = 1194
-#   protocol          = "tcp"
-#   to_port           = 1194
-# }
+######## VPN ##########33     sess-48
+
+resource "aws_security_group_rule" "open_vpn_public" {
+  type              = "ingress"
+  security_group_id = local.open_vpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
+
+resource "aws_security_group_rule" "open_vpn_943" {
+  type              = "ingress"
+  security_group_id = local.open_vpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 943
+  protocol          = "tcp"
+  to_port           = 943
+}
+
+resource "aws_security_group_rule" "open_vpn_443" {
+  type              = "ingress"
+  security_group_id = local.open_vpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 443
+  protocol          = "tcp"
+  to_port           = 443
+}
+
+resource "aws_security_group_rule" "open_vpn_1194" {
+  type              = "ingress"
+  security_group_id = local.open_vpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 1194
+  protocol          = "tcp"
+  to_port           = 1194
+}
+
+
+
+
+
+
 
 # resource "aws_security_group_rule" "catalogue_vpn" {
 #   type              = "ingress"
