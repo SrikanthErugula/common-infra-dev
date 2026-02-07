@@ -137,7 +137,7 @@ resource "aws_autoscaling_group" "catalogue" {                       # sess-43
   min_size                  = 1
   health_check_grace_period = 100
   health_check_type         = "ELB"
-  desired_capacity          = 1
+  desired_capacity          = 1 # 2 iste two servers and 4 iste servers creating 
   force_delete              = false # not required by defalut vundhi in syntax
   launch_template {
     id      = aws_launch_template.catalogue.id
