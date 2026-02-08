@@ -17,7 +17,7 @@ locals {
 
     open_vpn_sg_id = data.aws_ssm_parameter.open_vpn_sg_id.value # sess- 48 
 
-    vpn_ingress_rules = {
+    vpn_ingress_rules = {               # sess- 48 
         mysql_22 = {
             sg_id = local.mysql_sg_id
             port = 22
