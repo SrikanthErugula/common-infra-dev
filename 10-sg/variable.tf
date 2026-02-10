@@ -18,8 +18,8 @@ variable "sg_names" {
         "bastion",
         # frontend load balancer  #sess-39
         "frontend_alb",
-        # # Backend ALB
-        # "backend_alb",
+        # Backend ALB        #sess -39
+        "backend_alb",
         # "open_vpn"              #sess-48
     ]
 }

@@ -29,7 +29,7 @@ module "sg" {
 }
 
 # Frontend (idi separate refer in varibl.tf lo db,backend laga front kuda oka component)accepting traffic 
-#from frontend ALB ( idi different refer in varibkle.tf ) --> this for tight creating  sg 
+# from frontend ALB ( idi different refer in varibkle.tf ) --> this for tight creating  sg 
 
 # resource "aws_security_group_rule" "frontend_frontend_alb" {
 #   type              = "ingress"
