@@ -4,14 +4,14 @@ resource "aws_instance" "bastion" {
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.bastion_sg_id] 
     subnet_id = local.public_subnet_id
-    iam_instance_profile = aws_iam_instance_profile.bastion.name  # sess-42
+    # iam_instance_profile = aws_iam_instance_profile.bastion.name  # sess-42
     # # need more for terraform
-    root_block_device {
-        volume_size = 50
-        volume_type = "gp3" # or "gp2", depending on your preference
-    }
+    # root_block_device {
+    #     volume_size = 50
+    #     volume_type = "gp3" # or "gp2", depending on your preference
+    # }
 
-    user_data = file("bastion.sh") # comesfrom bastion.sh,.... sess 41
+    # user_data = file("bastion.sh") # comesfrom bastion.sh,.... sess 41
     tags = merge (
         local.common_tags,
         {
@@ -22,7 +22,7 @@ resource "aws_instance" "bastion" {
 
 
 # here providing AdminAccess for bastion 
-resource "aws_iam_instance_profile" "bastion" {                     # sess-42
-  name = "bastion"
-  role = "BastionTerraformAdminAccess" # comes from aws --IAM--role
-}
+# resource "aws_iam_instance_profile" "bastion" {                     # sess-42
+#   name = "bastion"
+#   role = "BastionTerraformAdminAccess" # comes from aws --IAM--role
+# }
