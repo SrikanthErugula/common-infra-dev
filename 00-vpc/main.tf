@@ -8,13 +8,13 @@ module "vpc_test" {
 
 
    # VPC
-    vpc_cidr = var.vpc_test_cidr # must comes from users 
+    vpc_cidr = var.vpc_test_cidr 
     project_name = var.project_name
     environment = var.environment
     vpc_tags = var.vpc_test_tags
 
     # For public subnets
-    public_subnet_cidrs = var.public_subnet_cidrs # see in notes
+    public_subnet_cidrs = var.public_subnet_cidrs 
 
     # Private Subnets
 
@@ -23,7 +23,7 @@ module "vpc_test" {
     # database subnets
     database_subnet_cidrs = var.database_subnet_cidrs
 
-    is_peering_required = false # see notes
+    is_peering_required = false 
 }
 
 

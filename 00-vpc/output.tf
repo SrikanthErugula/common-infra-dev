@@ -2,8 +2,6 @@ output "vpc_sri_id" {
     value = module.vpc_test.vpc_sri_id
 } 
 
-
-
 output "public_subnet_ids" {
   value = module.vpc_test.public_subnet_ids
 }
