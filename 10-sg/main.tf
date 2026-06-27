@@ -15,10 +15,12 @@
 # } 
 
 
+
+
 module "sg" {
   count = length(var.sg_names)
   source = "git::https://github.com/SrikanthErugula/custum-aws-sg.git"
-  #source = "git::https://github.com/SrikanthErugula/custum-aws-sg.git?ref=main"
+  # source = "git::https://github.com/SrikanthErugula/custum-aws-sg.git?ref=main.tf"
   project_name = var.project_name
   environment = var.environment
   sg_name = var.sg_names[count.index]
@@ -28,16 +30,14 @@ module "sg" {
   vpc_id =  local.vpc_id
 }
 
-# Frontend (idi separate refer in varibl.tf lo db,backend laga front kuda oka component)accepting traffic 
-# from frontend ALB ( idi different refer in varibkle.tf ) --> this for tight creating  sg 
-
-# resource "aws_security_group_rule" "frontend_frontend_alb" {
-#   type              = "ingress"
-#   security_group_id = module.sg[9].sg_id             # frontend SG ID   ---- # destination 
-#   source_security_group_id = module.sg[11].sg_id     # frontend ALB SG ID ---> # source
-#   from_port         = 80
-#   protocol          = "tcp"
-#   to_port           = 80
-# }
+# Frontend accepting traffic from frontend ALB  --> this for tight creating  sg   class-11 
+resource "aws_security_group_rule" "frontend_frontend_alb" {
+  type              = "ingress"
+  security_group_id = module.sg[9].sg_id             # frontend SG ID   ---- # destination 
+  source_security_group_id = module.sg[11].sg_id     # frontend ALB SG ID ---> # source
+  from_port         = 80
+  protocol          = "tcp"
+  to_port           = 80
+}
 
 # the above is for manula purpose we have written ....after this frnt sg will have frnt_lb check
