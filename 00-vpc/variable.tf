@@ -19,7 +19,6 @@ variable "vpc_test_tags" {
         DontDelete = "true"
     }
 }
-
 # ikkada variales y ante user ki chanace ivvali replce chesukovadaniki,
 
 # SUBNETS
