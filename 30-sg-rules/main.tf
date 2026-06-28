@@ -172,6 +172,7 @@
 
 
 # ##### Shipping SG Rules #####
+
 # #shipping is accepting traffic or connection from bastion on port 22
 # resource "aws_security_group_rule" "shipping_bastion" {                             #sess-46
 #   type              = "ingress"
@@ -194,6 +195,7 @@
 
 
 # # ##### Payment SG Rules #####
+
 # #Payment is accepting traffic or connection from bastion on port 22
 # resource "aws_security_group_rule" "payment_bastion" {                      # sess-46
 #   type              = "ingress"
@@ -270,6 +272,7 @@ resource "aws_security_group_rule" "backend_alb_bastion" {                      
 
 
 ##### Frontend SG Rules #####
+
 # #frontend is accepting traffic or connection from bastion on port 22
 # resource "aws_security_group_rule" "frontend_bastion" {                      #ses--46
 #   type              = "ingress"
