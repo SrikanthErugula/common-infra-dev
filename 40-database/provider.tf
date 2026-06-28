@@ -11,7 +11,7 @@ terraform {
 
   backend "s3" { # backend ante remote store ani anukovali
     bucket = "dsoaws-remote-store"
-    key    = "dev-infra-database" # so here keys must be not for the same for all, u have to set name as per the requirement 
+    key    = "infra-database" 
     region = "us-east-1"
     use_lockfile = true
     encrypt = true

@@ -14,7 +14,7 @@ dnf install ansible -y
 # cd ansible-playbook
 # ansible-playbook -i inventory main.yaml
 
-#---> the above ansible pull antha ga work or .ini ni repect cheyatum ledhu so we need to set below points
+# above asible pull is not respecting .ini for taking localhost we need to set below points
 
 #sess-41
 REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git
@@ -37,7 +37,7 @@ else
     cd $ANSIBLE_DIR
 fi
 
-# so here ansible-robo-roles.tf idhe file vunna now we below cmd
+# so here ansible-robo-roles.tf idhe file vunnam now we below cmd
 ansible-playbook -e component=$component -e env=$environment main.yaml
 
 # no need to give .ini bcz we had been given in ansible.cfg lo 

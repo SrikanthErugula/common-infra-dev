@@ -1,25 +1,25 @@
 
 ################ MONGODB ###################
 
-# #mongodb is accepting traffic or connection from bastion
-# resource "aws_security_group_rule" "mongodb_bastion" {                #3
-#   type              = "ingress"
-#   security_group_id = local.mongodb_sg_id        # destination 
-#   source_security_group_id = local.bastion_sg_id  # Source 
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+#mongodb is accepting traffic or connection from bastion
+resource "aws_security_group_rule" "mongodb_bastion" {                #3   CL-40
+  type              = "ingress"
+  security_group_id = local.mongodb_sg_id        # destination 
+  source_security_group_id = local.bastion_sg_id  # Source 
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
-# # mongodb accepting connection from catalogue on port 27017
-# resource "aws_security_group_rule" "mongodb_catalogue" {          #7 sess-42
-#   type              = "ingress" 
-#   security_group_id = local.mongodb_sg_id
-#   source_security_group_id = local.catalogue_sg_id
-#   from_port         = 27017
-#   protocol          = "tcp"
-#   to_port           = 27017
-# }
+# mongodb accepting connection from catalogue on port 27017
+resource "aws_security_group_rule" "mongodb_catalogue" {          #7 sess-42
+  type              = "ingress" 
+  security_group_id = local.mongodb_sg_id
+  source_security_group_id = local.catalogue_sg_id
+  from_port         = 27017
+  protocol          = "tcp"
+  to_port           = 27017
+}
 
 # # mongodb accepting connection from user on port 27017
 # resource "aws_security_group_rule" "mongodb_user" {                # sess-46
@@ -32,15 +32,15 @@
 # }
 
 # ################ REDIS ###################
-# # # Redis accepting connections from bastion on port 22
-# resource "aws_security_group_rule" "redis_bastion" {                    #4
-#   type              = "ingress"
-#   security_group_id = local.redis_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# # Redis accepting connections from bastion on port 22
+resource "aws_security_group_rule" "redis_bastion" {                    #4   CL-40
+  type              = "ingress"
+  security_group_id = local.redis_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # #Redis accepting connections from user on port 6379
 # resource "aws_security_group_rule" "redis_user" {                   #sess-46
@@ -63,15 +63,15 @@
 # }
 
 # ################ MYSQL ###################
-# # mysql is accepting traffic or connection from bastion on port 22
-# resource "aws_security_group_rule" "mysql_bastion" {                      #6
-#   type              = "ingress"
-#   security_group_id = local.mysql_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# mysql is accepting traffic or connection from bastion on port 22
+resource "aws_security_group_rule" "mysql_bastion" {                      #6
+  type              = "ingress"
+  security_group_id = local.mysql_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # mysql is accepting traffic or connection from shipping on port 3306
 # resource "aws_security_group_rule" "mysql_shipping" {                    #sess-46
@@ -84,15 +84,15 @@
 # }
 
 # ################ RabbitMQ ###################
-# # RabbitMQ is accepting traffic or connection from bastion on port 22
-# resource "aws_security_group_rule" "rabbitmq_bastion" {                     #5
-#   type              = "ingress"
-#   security_group_id = local.rabbitmq_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# RabbitMQ is accepting traffic or connection from bastion on port 22
+resource "aws_security_group_rule" "rabbitmq_bastion" {                     #5   CL-40
+  type              = "ingress"
+  security_group_id = local.rabbitmq_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # RabbitMQ is accepting traffic or connection from payment on port 5672
 # resource "aws_security_group_rule" "rabbitmq_payment" {                    #sess-46
@@ -106,15 +106,15 @@
 
 
 # # ###### Catalogue SG Rules ######
-# # cata is accepting traffic or connection from bastion on port 22
-# resource "aws_security_group_rule" "catalogue_bastion" {                 #7 sess-42
-#   type              = "ingress"
-#   security_group_id = local.catalogue_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# cata is accepting traffic or connection from bastion on port 22
+resource "aws_security_group_rule" "catalogue_bastion" {                 #7 sess-42
+  type              = "ingress"
+  security_group_id = local.catalogue_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # cata is accepting traffic or connection from backaned_alb on port 8080
 # resource "aws_security_group_rule" "catalogue_backend_alb" {                  # 8 sess-43
@@ -219,10 +219,10 @@
 # ##### Backend ALB SG Rules #####
 
 #backend_alb is accepting traffic or connection from bastion  on port 80
-resource "aws_security_group_rule" "backend_alb_bastion" {                        #1
+resource "aws_security_group_rule" "backend_alb_bastion" {    # sess-39- C-11                    #1    CL-39
   type              = "ingress"
-  security_group_id = local.backend_alb_sg_id            # frontend SG ID   ---- # destination 
-  source_security_group_id = local.bastion_sg_id   # frontend ALB SG ID ---> # source
+  security_group_id = local.backend_alb_sg_id            # backend SG ID   ---- # destination 
+  source_security_group_id = local.bastion_sg_id   # backend ALB SG ID ---> # source
   from_port         = 80
   protocol          = "tcp"
   to_port           = 80
@@ -307,7 +307,7 @@ resource "aws_security_group_rule" "backend_alb_bastion" {                      
 
 # ##### Bastion SG Rules #####
 # # Bastion should accept traffic or connecction from public or laptop on port 22
-resource "aws_security_group_rule" "bastion_laptop" {            # 2  sess-39 
+resource "aws_security_group_rule" "bastion_laptop" {                                   # 2  sess-39 c-11
   type              = "ingress"
   security_group_id = local.bastion_sg_id
   cidr_blocks = ["0.0.0.0/0"]

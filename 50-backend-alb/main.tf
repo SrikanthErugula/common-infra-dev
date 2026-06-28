@@ -1,4 +1,4 @@
-#sess-40
+#sess-39, C-11
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
 # SYNTAX take it from above URL
@@ -19,16 +19,16 @@ resource "aws_lb" "backend_alb" {
         Name = "${local.common_name_suffix}-backend-alb"
     }
   )
-} # up to here lb done 
+} # up to here b_lb done 
 
 # # Backend ALB listening on port number 80
-
+#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
 resource "aws_lb_listener" "backend_alb" {
-  load_balancer_arn = aws_lb.backend_alb.arn # see notes
+  load_balancer_arn = aws_lb.backend_alb.arn # see notes C-11
   port              = "80"
   protocol          = "HTTP"
 
-# the below is for fixed respose means inka team anedhi create avvaldhu so we have to give like this
+# see notes C-11
   default_action {
     type = "fixed-response"
 

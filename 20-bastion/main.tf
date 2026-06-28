@@ -4,7 +4,7 @@ resource "aws_instance" "bastion" {
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.bastion_sg_id] 
     subnet_id = local.public_subnet_id
-    # iam_instance_profile = aws_iam_instance_profile.bastion.name  # sess-42
+    iam_instance_profile = aws_iam_instance_profile.bastion.name  # sess-42
     # # need more for terraform
     # root_block_device {
     #     volume_size = 50
@@ -22,7 +22,7 @@ resource "aws_instance" "bastion" {
 
 
 # here providing AdminAccess for bastion 
-# resource "aws_iam_instance_profile" "bastion" {                     # sess-42
-#   name = "bastion"
-#   role = "BastionTerraformAdminAccess" # comes from aws --IAM--role
-# }
+resource "aws_iam_instance_profile" "bastion" {                     # sess-42 
+  name = "bastion"
+  role = "BastionTerraformAdminAccess" # comes from aws --IAM--role
+}

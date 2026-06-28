@@ -1,7 +1,7 @@
 
 #sess-40
 
-# MONGODB CONFIGURATION
+# MONGODB CONFIGURATION                                       # 1 CL-40
 
 resource "aws_instance" "mongodb" {
     ami = local.ami_id
@@ -31,7 +31,7 @@ resource "terraform_data" "mongodb" {
     host     = aws_instance.mongodb.private_ip
   }
 
-  # terraform copies this file to mongodb server
+  # terraform copies this file into mongodb server
   provisioner "file" { # see in notes 
     source = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"
@@ -50,7 +50,7 @@ resource "terraform_data" "mongodb" {
 
 # REDIS CONFIGURATION 
 
-resource "aws_instance" "redis" {                                #3
+resource "aws_instance" "redis" {                                #2   CL-40
     ami = local.ami_id
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.redis_sg_id]
@@ -90,7 +90,7 @@ resource "terraform_data" "redis" {
   }
 }
 
-# RABBITMQ CONFIGURATION 
+# RABBITMQ CONFIGURATION                            #3       CL-40
 
 resource "aws_instance" "rabbitmq" {
     ami = local.ami_id
@@ -106,7 +106,7 @@ resource "aws_instance" "rabbitmq" {
     )
 }
 
-resource "terraform_data" "rabbitmq" {                                    #4
+resource "terraform_data" "rabbitmq" {                               
   triggers_replace = [
     aws_instance.rabbitmq.id
   ]
@@ -134,7 +134,7 @@ resource "terraform_data" "rabbitmq" {                                    #4
 
 # MYSQL CONFIGURATION 
 
-resource "aws_instance" "mysql" {                                          #5
+resource "aws_instance" "mysql" {                                      #4      CL-40
     ami = local.ami_id
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.mysql_sg_id]
@@ -149,9 +149,10 @@ resource "aws_instance" "mysql" {                                          #5
     )
 }
 
+# it is used to get access for SSM Paramater store
 resource "aws_iam_instance_profile" "mysql" {
   name = "mysql"
-  role = "EC2SSMParameterRead" # we created role in IAM lo 
+  role = "EC2SSMParameterRole" # we created role in IAM lo 
 }
 
 resource "terraform_data" "mysql" {

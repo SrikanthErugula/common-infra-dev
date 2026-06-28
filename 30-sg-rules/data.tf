@@ -1,4 +1,4 @@
-data "aws_ssm_parameter" "backend_alb_sg_id" {                              #1
+data "aws_ssm_parameter" "backend_alb_sg_id" {                              #1 CL-39
   name = "/${var.project_name}/${var.environment}/backend_alb_sg_id"
 }
 
@@ -7,20 +7,20 @@ data "aws_ssm_parameter" "backend_alb_sg_id" {                              #1
 #   name = "/${var.project_name}/${var.environment}/frontend_alb_sg_id"
 # }
 
-data "aws_ssm_parameter" "bastion_sg_id" {                                      #2
+data "aws_ssm_parameter" "bastion_sg_id" {                                      #2  CL-39
   name = "/${var.project_name}/${var.environment}/bastion_sg_id"
 }
-# data "aws_ssm_parameter" "mongodb_sg_id" {                                      #3
-#   name = "/${var.project_name}/${var.environment}/mongodb_sg_id"
-# }
+data "aws_ssm_parameter" "mongodb_sg_id" {                                      #3  CL-40
+  name = "/${var.project_name}/${var.environment}/mongodb_sg_id"
+}
 
-# data "aws_ssm_parameter" "redis_sg_id" {                                      #4
-#   name = "/${var.project_name}/${var.environment}/redis_sg_id"
-# }
+data "aws_ssm_parameter" "redis_sg_id" {                                      #4  CL-40
+  name = "/${var.project_name}/${var.environment}/redis_sg_id"
+}
 
-# data "aws_ssm_parameter" "rabbitmq_sg_id" {                                   #5
-#   name = "/${var.project_name}/${var.environment}/rabbitmq_sg_id"
-# }
+data "aws_ssm_parameter" "rabbitmq_sg_id" {                                   #5    CL-40
+  name = "/${var.project_name}/${var.environment}/rabbitmq_sg_id"
+}
 
 # data "aws_ssm_parameter" "mysql_sg_id" {                                       #6
 #   name = "/${var.project_name}/${var.environment}/mysql_sg_id"
