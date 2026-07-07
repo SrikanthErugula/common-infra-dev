@@ -13,7 +13,7 @@ terraform {
     bucket = "dsoaws-remote-store"
     key    = "infra-database" 
     region = "us-east-1"
-    use_lockfile = true
+    # use_lockfile = true
     encrypt = true
   }
 }

@@ -1,43 +1,43 @@
-#!/bin/bash
+# #!/bin/bash
 
+# # dnf install ansible -y
+# # ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
+
+# # the above is HARDCODE chesam but we are using same code for all db then we need do below setup 
+
+# #sess-40
+# component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
+# environment=$2
 # dnf install ansible -y
-# ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
+# #ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
+# #git clone ansible-playbook
+# # cd ansible-playbook
+# # ansible-playbook -i inventory main.yaml
 
-# the above is HARDCODE chesam but we are using same code for all db then we need do below setup 
+# # above asible pull is not respecting .ini for taking localhost we need to set below points
 
-#sess-40
-component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
-environment=$2
-dnf install ansible -y
-#ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
-#git clone ansible-playbook
-# cd ansible-playbook
-# ansible-playbook -i inventory main.yaml
+# #sess-41
+# REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git
+# REPO_DIR=/opt/roboshop/ansible        # /opt means optional 
+# ANSIBLE_DIR=ansible-robo-roles.tf
 
-# above asible pull is not respecting .ini for taking localhost we need to set below points
+# mkdir -p $REPO_DIR
+# mkdir -p /var/log/roboshoplogs/
+# touch ansible.log
 
-#sess-41
-REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git
-REPO_DIR=/opt/roboshop/ansible        # /opt means optional 
-ANSIBLE_DIR=ansible-robo-roles.tf
+# cd $REPO_DIR
+# # check if ansible repo is already cloned or not
 
-mkdir -p $REPO_DIR
-mkdir -p /var/log/roboshoplogs/
-touch ansible.log
+# if [ -d $ANSIBLE_DIR ]; then #-d means DIR
 
-cd $REPO_DIR
-# check if ansible repo is already cloned or not
+#     cd $ANSIBLE_DIR
+#     git pull
+# else
+#     git clone $REPO_URL
+#     cd $ANSIBLE_DIR
+# fi
 
-if [ -d $ANSIBLE_DIR ]; then #-d means DIR
+# # so here ansible-robo-roles.tf idhe file vunnam now we below cmd
+# ansible-playbook -e component=$component -e env=$environment main.yaml
 
-    cd $ANSIBLE_DIR
-    git pull
-else
-    git clone $REPO_URL
-    cd $ANSIBLE_DIR
-fi
-
-# so here ansible-robo-roles.tf idhe file vunnam now we below cmd
-ansible-playbook -e component=$component -e env=$environment main.yaml
-
-# no need to give .ini bcz we had been given in ansible.cfg lo 
+# # no need to give .ini bcz we had been given in ansible.cfg lo 

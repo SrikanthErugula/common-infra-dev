@@ -2,11 +2,11 @@ locals {
     backend_alb_sg_id = data.aws_ssm_parameter.backend_alb_sg_id.value     #1    CL-39
     # frontend_alb_sg_id = data.aws_ssm_parameter.frontend_alb_sg_id.value  # 9 sess-45
     bastion_sg_id = data.aws_ssm_parameter.bastion_sg_id.value              #2   CL-39
-    mongodb_sg_id = data.aws_ssm_parameter.mongodb_sg_id.value             #3  CL-40
-    redis_sg_id = data.aws_ssm_parameter.redis_sg_id.value                  #4   CL-40
-    rabbitmq_sg_id = data.aws_ssm_parameter.rabbitmq_sg_id.value           #5    CL-40
-    mysql_sg_id = data.aws_ssm_parameter.mysql_sg_id.value                 #6
-    catalogue_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value         #7 sess-42
+    # mongodb_sg_id = data.aws_ssm_parameter.mongodb_sg_id.value             #3  CL-40
+    # redis_sg_id = data.aws_ssm_parameter.redis_sg_id.value                  #4   CL-40
+    # rabbitmq_sg_id = data.aws_ssm_parameter.rabbitmq_sg_id.value           #5    CL-40
+    # mysql_sg_id = data.aws_ssm_parameter.mysql_sg_id.value                 #6
+    # catalogue_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value         #7 sess-42
 
     # #ses-46 upto fornt-sg
     # user_sg_id = data.aws_ssm_parameter.user_sg_id.value
