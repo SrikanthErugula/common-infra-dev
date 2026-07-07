@@ -40,7 +40,6 @@ resource "terraform_data" "mongodb" {
   provisioner "remote-exec" { # here executin the ansible playbooks through script 
     inline = [ # here given excute access for that above file 
         "chmod +x /tmp/bootstrap.sh",
-        # "sudo sh /tmp/bootstrap.sh"
         "sudo sh /tmp/bootstrap.sh mongodb"
        
     ]
