@@ -1,22 +1,24 @@
 #!/bin/bash
-
-dnf install ansible -y
-ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=mongodb main.yaml
+## Process -1
+# dnf install ansible -y
+# ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=mongodb main.yaml
 
 # the above is HARDCODE chesam but we are using same code for all db then we need do below setup 
 
 
 
-# #sess-40
-# component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
-# environment=$2
-# dnf install ansible -y
-# #ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
-# #git clone ansible-playbook
-# # cd ansible-playbook
-# # ansible-playbook -i inventory main.yaml
 
-# # above asible pull is not respecting .ini for taking localhost we need to set below points
+## process - 2
+# #sess-40
+component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
+# environment=$2
+dnf install ansible -y
+ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
+# git clone ansible-playbook
+# cd ansible-playbook
+# ansible-playbook -i inventory main.yaml
+
+# above asible pull is not respecting .ini for taking localhost we need to set below points
 
 # #sess-41
 # REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git

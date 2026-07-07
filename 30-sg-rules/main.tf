@@ -33,14 +33,14 @@ resource "aws_security_group_rule" "mongodb_bastion" {                #3   CL-40
 
 # # ################ REDIS ###################
 # # # Redis accepting connections from bastion on port 22
-# resource "aws_security_group_rule" "redis_bastion" {                    #4   CL-40
-#   type              = "ingress"
-#   security_group_id = local.redis_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+resource "aws_security_group_rule" "redis_bastion" {                    #4   CL-40
+  type              = "ingress"
+  security_group_id = local.redis_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # #Redis accepting connections from user on port 6379
 # # resource "aws_security_group_rule" "redis_user" {                   #sess-46
