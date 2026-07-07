@@ -1,9 +1,11 @@
-# #!/bin/bash
+#!/bin/bash
 
-# # dnf install ansible -y
-# # ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
+dnf install ansible -y
+ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml
 
-# # the above is HARDCODE chesam but we are using same code for all db then we need do below setup 
+# the above is HARDCODE chesam but we are using same code for all db then we need do below setup 
+
+
 
 # #sess-40
 # component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
