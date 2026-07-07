@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf install ansible -y
-ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component= mongodb main.yaml
+ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=mongodb main.yaml
 
 # the above is HARDCODE chesam but we are using same code for all db then we need do below setup 
 
