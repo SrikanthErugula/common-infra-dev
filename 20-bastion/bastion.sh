@@ -6,14 +6,14 @@
 # lvextend -L +30G /dev/mapper/RootVG-homeVol
 # xfs_growfs /home
 
-# # for sess -41 
-# sudo yum install -y yum-utils
-# # sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo 
-# sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-# sudo yum install terraform
+# for sess -41 
+sudo yum install -y yum-utils
+# sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo 
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum install terraform
 
 
-# # sudo lvreduce -r -L 6G /dev/mapper/RootVG-rootVol
+# sudo lvreduce -r -L 6G /dev/mapper/RootVG-rootVol
 
 # # #sess-46
 # # creating databases

@@ -9,39 +9,45 @@
 
 
 ## process - 2
-# #sess-40
-component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
-# environment=$2
-dnf install ansible -y
-ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
+# # #sess-40
+# component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
+# dnf install ansible -y
+# ansible-pull -U https://github.com/SrikanthErugula/ansible-robo-roles.tf.git -e component=$component main.yaml 
 # git clone ansible-playbook
 # cd ansible-playbook
 # ansible-playbook -i inventory main.yaml
 
+
 # above asible pull is not respecting .ini for taking localhost we need to set below points
 
-# #sess-41
-# REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git
-# REPO_DIR=/opt/roboshop/ansible        # /opt means optional 
-# ANSIBLE_DIR=ansible-robo-roles.tf
 
-# mkdir -p $REPO_DIR
-# mkdir -p /var/log/roboshoplogs/
-# touch ansible.log
+### Process -3 
 
-# cd $REPO_DIR
-# # check if ansible repo is already cloned or not
+component=$1    # here manam name adhi iste adhi vastundhi like redis or mysql ... this shell script
+environment=$2
+dnf install ansible -y
+#sess-41
+REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git
+REPO_DIR=/opt/roboshop/ansible        # /opt means optional 
+ANSIBLE_DIR=ansible-robo-roles.tf
 
-# if [ -d $ANSIBLE_DIR ]; then #-d means DIR
+mkdir -p $REPO_DIR
+mkdir -p /var/log/roboshoplogs/
+touch ansible.log
 
-#     cd $ANSIBLE_DIR
-#     git pull
-# else
-#     git clone $REPO_URL
-#     cd $ANSIBLE_DIR
-# fi
+cd $REPO_DIR
+# check if ansible repo is already cloned or not
 
-# # so here ansible-robo-roles.tf idhe file vunnam now we below cmd
-# ansible-playbook -e component=$component -e env=$environment main.yaml
+if [ -d $ANSIBLE_DIR ]; then #-d means DIR
 
-# # no need to give .ini bcz we had been given in ansible.cfg lo 
+    cd $ANSIBLE_DIR
+    git pull
+else
+    git clone $REPO_URL
+    cd $ANSIBLE_DIR
+fi
+
+# so here ansible-robo-roles.tf idhe file vunnam now we below cmd
+ansible-playbook -e component=$component -e env=$environment main.yaml
+
+# no need to give .ini bcz we had been given in ansible.cfg lo 

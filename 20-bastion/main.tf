@@ -11,7 +11,7 @@ resource "aws_instance" "bastion" {
     #     volume_type = "gp3" # or "gp2", depending on your preference
     # }
 
-    # user_data = file("bastion.sh") # comesfrom bastion.sh,.... sess 41
+    user_data = file("bastion.sh") # comesfrom bastion.sh,.... sess 41
     tags = merge (
         local.common_tags,
         {
