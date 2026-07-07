@@ -46,6 +46,7 @@ resource "aws_ec2_instance_state" "catalogue" {                           #sess-
   instance_id = aws_instance.catalogue.id
   state       = "stopped"
   depends_on = [terraform_data.catalogue] # see above block
+ 
 }
 
 # taking AMI from instance 
@@ -67,7 +68,7 @@ resource "aws_lb_target_group" "catalogue" {            # sess-43
   port     = 8080
   protocol = "HTTP"
   vpc_id   = local.vpc_id
-  deregistration_delay = 60 # waiting period before deleting the instance
+  deregistration_delay = 60 # waiting period before deleting the instance,
 
   health_check { # these are IMP
     healthy_threshold = 2   # fast response
