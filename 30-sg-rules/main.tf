@@ -1,15 +1,15 @@
 
 # ################ MONGODB ###################
 
-# #mongodb is accepting traffic or connection from bastion
-# resource "aws_security_group_rule" "mongodb_bastion" {                #3   CL-40
-#   type              = "ingress"
-#   security_group_id = local.mongodb_sg_id        # destination 
-#   source_security_group_id = local.bastion_sg_id  # Source 
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+#mongodb is accepting traffic or connection from bastion
+resource "aws_security_group_rule" "mongodb_bastion" {                #3   CL-40
+  type              = "ingress"
+  security_group_id = local.mongodb_sg_id        # destination 
+  source_security_group_id = local.bastion_sg_id  # Source 
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # mongodb accepting connection from catalogue on port 27017
 # resource "aws_security_group_rule" "mongodb_catalogue" {          #7 sess-42
