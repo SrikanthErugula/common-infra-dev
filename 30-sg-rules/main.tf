@@ -116,18 +116,18 @@ resource "aws_security_group_rule" "catalogue_bastion" {                 #7 sess
   to_port           = 22
 }
 
-# # cata is accepting traffic or connection from backaned_alb on port 8080
-# resource "aws_security_group_rule" "catalogue_backend_alb" {                  # 8 sess-43
-#   type              = "ingress"
-#   security_group_id = local.catalogue_sg_id
-#   source_security_group_id = local.backend_alb_sg_id
-#   from_port         = 8080
-#   protocol          = "tcp"
-#   to_port           = 8080
-# }
+# cata is accepting traffic or connection from backaned_alb on port 8080
+resource "aws_security_group_rule" "catalogue_backend_alb" {                  # 8 sess-43
+  type              = "ingress"
+  security_group_id = local.catalogue_sg_id
+  source_security_group_id = local.backend_alb_sg_id
+  from_port         = 8080
+  protocol          = "tcp"
+  to_port           = 8080
+}
 
 
-# # ##### User SG Rules #####
+# ##### User SG Rules #####
 # #user is accepting traffic or connection from bastion on port 22
 # resource "aws_security_group_rule" "user_bastion" {                                  #sess-46
 #   type              = "ingress"
