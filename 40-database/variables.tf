@@ -27,7 +27,7 @@ variable "environment" {
 # }
 
 variable "zone_id" {                # sess-42
-    default = "Z0508801ITHFU9ARNA74"
+    default = "Z04684822ZHOD2IE49OQC"
 }
 
 variable "domain_name" {            # sess-42
