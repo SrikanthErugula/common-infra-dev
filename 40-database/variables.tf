@@ -26,10 +26,10 @@ variable "environment" {
 #     ]
 # }
 
-# variable "zone_id" {                # sess-42
-#     default = "Z0508801ITHFU9ARNA74"
-# }
+variable "zone_id" {                # sess-42
+    default = "Z0508801ITHFU9ARNA74"
+}
 
-# variable "domain_name" {            # sess-42
-#     default = "dsoaws.fun"
-# }
+variable "domain_name" {            # sess-42
+    default = "dsoaws.fun"
+}
