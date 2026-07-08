@@ -149,7 +149,7 @@ resource "aws_instance" "mysql" {                                      #4      C
 }
 
 # it is used to get access for SSM Paramater store
-resource "aws_iam_instance_profile" "mysql" {
+resource "aws_iam_instance_profile" "mysql" {      ## CL-41
   name = "mysql"
   role = "EC2SSMParameterRole" # we created role in IAM lo 
 }

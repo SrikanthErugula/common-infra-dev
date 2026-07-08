@@ -11,15 +11,15 @@ resource "aws_security_group_rule" "mongodb_bastion" {                #3   CL-40
   to_port           = 22
 }
 
-# # mongodb accepting connection from catalogue on port 27017
-# resource "aws_security_group_rule" "mongodb_catalogue" {          #7 sess-42
-#   type              = "ingress" 
-#   security_group_id = local.mongodb_sg_id
-#   source_security_group_id = local.catalogue_sg_id
-#   from_port         = 27017
-#   protocol          = "tcp"
-#   to_port           = 27017
-# }
+# mongodb accepting connection from catalogue on port 27017
+resource "aws_security_group_rule" "mongodb_catalogue" {          #7 sess-42
+  type              = "ingress" 
+  security_group_id = local.mongodb_sg_id
+  source_security_group_id = local.catalogue_sg_id
+  from_port         = 27017
+  protocol          = "tcp"
+  to_port           = 27017
+}
 
 # # # mongodb accepting connection from user on port 27017
 # # resource "aws_security_group_rule" "mongodb_user" {                # sess-46
@@ -63,15 +63,15 @@ resource "aws_security_group_rule" "redis_bastion" {                    #4   CL-
 # # }
 
 # # ################ MYSQL ###################
-# # mysql is accepting traffic or connection from bastion on port 22
-# resource "aws_security_group_rule" "mysql_bastion" {                      #6
-#   type              = "ingress"
-#   security_group_id = local.mysql_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# mysql is accepting traffic or connection from bastion on port 22
+resource "aws_security_group_rule" "mysql_bastion" {                      #6
+  type              = "ingress"
+  security_group_id = local.mysql_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # # mysql is accepting traffic or connection from shipping on port 3306
 # # resource "aws_security_group_rule" "mysql_shipping" {                    #sess-46
@@ -84,15 +84,15 @@ resource "aws_security_group_rule" "redis_bastion" {                    #4   CL-
 # # }
 
 # # ################ RabbitMQ ###################
-# # RabbitMQ is accepting traffic or connection from bastion on port 22
-# resource "aws_security_group_rule" "rabbitmq_bastion" {                     #5   CL-40
-#   type              = "ingress"
-#   security_group_id = local.rabbitmq_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# RabbitMQ is accepting traffic or connection from bastion on port 22
+resource "aws_security_group_rule" "rabbitmq_bastion" {                     #5   CL-40
+  type              = "ingress"
+  security_group_id = local.rabbitmq_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # # RabbitMQ is accepting traffic or connection from payment on port 5672
 # # resource "aws_security_group_rule" "rabbitmq_payment" {                    #sess-46
@@ -106,15 +106,15 @@ resource "aws_security_group_rule" "redis_bastion" {                    #4   CL-
 
 
 # # # ###### Catalogue SG Rules ######
-# # cata is accepting traffic or connection from bastion on port 22
-# resource "aws_security_group_rule" "catalogue_bastion" {                 #7 sess-42
-#   type              = "ingress"
-#   security_group_id = local.catalogue_sg_id
-#   source_security_group_id = local.bastion_sg_id
-#   from_port         = 22
-#   protocol          = "tcp"
-#   to_port           = 22
-# }
+# cata is accepting traffic or connection from bastion on port 22
+resource "aws_security_group_rule" "catalogue_bastion" {                 #7 sess-42
+  type              = "ingress"
+  security_group_id = local.catalogue_sg_id
+  source_security_group_id = local.bastion_sg_id
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
 
 # # cata is accepting traffic or connection from backaned_alb on port 8080
 # resource "aws_security_group_rule" "catalogue_backend_alb" {                  # 8 sess-43

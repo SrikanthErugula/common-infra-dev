@@ -48,6 +48,6 @@ else
 fi
 
 # so here ansible-robo-roles.tf idhe file vunnam now we below cmd
-ansible-playbook -e component=$component -e env=$environment main.yaml
+ansible-playbook -e component=$component -e env=$environment all-start-code.yaml
 
 # no need to give .ini bcz we had been given in ansible.cfg lo 
