@@ -1,10 +1,10 @@
 # #!/bin/bash  
 
-# #sess-43
-# # growing or increase the /home volume or storage for terraform purpose
-# growpart /dev/nvme0n1 4
-# lvextend -L +30G /dev/mapper/RootVG-homeVol
-# xfs_growfs /home
+#sess-43
+# growing or increase the /home volume or storage for terraform purpose
+growpart /dev/nvme0n1 4
+lvextend -L +30G /dev/mapper/RootVG-homeVol
+xfs_growfs /home
 
 # for sess -41 
 sudo yum install -y yum-utils
