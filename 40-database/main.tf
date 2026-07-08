@@ -47,138 +47,138 @@ resource "terraform_data" "mongodb" {
 }
 
 
-# # REDIS CONFIGURATION 
+# REDIS CONFIGURATION 
 
-# resource "aws_instance" "redis" {                                #2   CL-40
-#     ami = local.ami_id
-#     instance_type = "t3.micro"
-#     vpc_security_group_ids = [local.redis_sg_id]
-#     subnet_id = local.database_subnet_id
+resource "aws_instance" "redis" {                                #2   CL-40
+    ami = local.ami_id
+    instance_type = "t3.micro"
+    vpc_security_group_ids = [local.redis_sg_id]
+    subnet_id = local.database_subnet_id
     
-#     tags = merge (
-#         local.common_tags,
-#         {
-#             Name = "${local.common_name_suffix}-redis" # roboshop-dev-redis
-#         }
-#     )
-# }
+    tags = merge (
+        local.common_tags,
+        {
+            Name = "${local.common_name_suffix}-redis" # roboshop-dev-redis
+        }
+    )
+}
 
-# resource "terraform_data" "redis" {
-#   triggers_replace = [
-#     aws_instance.redis.id
-#   ]
+resource "terraform_data" "redis" {
+  triggers_replace = [
+    aws_instance.redis.id
+  ]
   
-#   connection {
-#     type     = "ssh"
-#     user     = "ec2-user"
-#     password = "DevOps321"
-#     host     = aws_instance.redis.private_ip
-#   }
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.redis.private_ip
+  }
 
-#   # terraform copies this file to redis server
-#   provisioner "file" {
-#     source = "bootstrap.sh"
-#     destination = "/tmp/bootstrap.sh"
-#   }
+  # terraform copies this file to redis server
+  provisioner "file" {
+    source = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#         "chmod +x /tmp/bootstrap.sh",
-#         "sudo sh /tmp/bootstrap.sh redis"
-#     ]
-#   }
-# }
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /tmp/bootstrap.sh",
+        "sudo sh /tmp/bootstrap.sh redis"
+    ]
+  }
+}
 
-# # # RABBITMQ CONFIGURATION                            #3       CL-40
+# # RABBITMQ CONFIGURATION                            #3       CL-40
 
-# resource "aws_instance" "rabbitmq" {
-#     ami = local.ami_id
-#     instance_type = "t3.micro"
-#     vpc_security_group_ids = [local.rabbitmq_sg_id]
-#     subnet_id = local.database_subnet_id
+resource "aws_instance" "rabbitmq" {
+    ami = local.ami_id
+    instance_type = "t3.micro"
+    vpc_security_group_ids = [local.rabbitmq_sg_id]
+    subnet_id = local.database_subnet_id
     
-#     tags = merge (
-#         local.common_tags,
-#         {
-#             Name = "${local.common_name_suffix}-rabbitmq" # roboshop-dev-rabbitmq
-#         }
-#     )
-# }
+    tags = merge (
+        local.common_tags,
+        {
+            Name = "${local.common_name_suffix}-rabbitmq" # roboshop-dev-rabbitmq
+        }
+    )
+}
 
-# resource "terraform_data" "rabbitmq" {                               
-#   triggers_replace = [
-#     aws_instance.rabbitmq.id
-#   ]
+resource "terraform_data" "rabbitmq" {                               
+  triggers_replace = [
+    aws_instance.rabbitmq.id
+  ]
   
-#   connection {
-#     type     = "ssh"
-#     user     = "ec2-user"
-#     password = "DevOps321"
-#     host     = aws_instance.rabbitmq.private_ip
-#   }
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.rabbitmq.private_ip
+  }
 
-#   # terraform copies this file to rabbitmq server
-#   provisioner "file" {
-#     source = "bootstrap.sh"
-#     destination = "/tmp/bootstrap.sh"
-#   }
+  # terraform copies this file to rabbitmq server
+  provisioner "file" {
+    source = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#         "chmod +x /tmp/bootstrap.sh",
-#         "sudo sh /tmp/bootstrap.sh rabbitmq"
-#     ]
-#   }
-# }
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /tmp/bootstrap.sh",
+        "sudo sh /tmp/bootstrap.sh rabbitmq"
+    ]
+  }
+}
 
-# # MYSQL CONFIGURATION 
+# MYSQL CONFIGURATION 
 
-# resource "aws_instance" "mysql" {                                      #4      CL-40
-#     ami = local.ami_id
-#     instance_type = "t3.micro"
-#     vpc_security_group_ids = [local.mysql_sg_id]
-#     subnet_id = local.database_subnet_id
-#     iam_instance_profile = aws_iam_instance_profile.mysql.name
+resource "aws_instance" "mysql" {                                      #4      CL-40
+    ami = local.ami_id
+    instance_type = "t3.micro"
+    vpc_security_group_ids = [local.mysql_sg_id]
+    subnet_id = local.database_subnet_id
+    iam_instance_profile = aws_iam_instance_profile.mysql.name
     
-#     tags = merge (
-#         local.common_tags,
-#         {
-#             Name = "${local.common_name_suffix}-mysql" # roboshop-dev-mysql
-#         }
-#     )
-# }
+    tags = merge (
+        local.common_tags,
+        {
+            Name = "${local.common_name_suffix}-mysql" # roboshop-dev-mysql
+        }
+    )
+}
 
-# # it is used to get access for SSM Paramater store
-# resource "aws_iam_instance_profile" "mysql" {      ## CL-41
-#   name = "mysql"
-#   role = "EC2SSMParameterRole" # we created role in IAM lo 
-# }
+# it is used to get access for SSM Paramater store
+resource "aws_iam_instance_profile" "mysql" {      ## CL-41
+  name = "mysql"
+  role = "EC2SSMParameterRole" # we created role in IAM lo 
+}
 
-# resource "terraform_data" "mysql" {
-#   triggers_replace = [
-#     aws_instance.mysql.id
-#   ]
+resource "terraform_data" "mysql" {
+  triggers_replace = [
+    aws_instance.mysql.id
+  ]
   
-#   connection {
-#     type     = "ssh"
-#     user     = "ec2-user"
-#     password = "DevOps321"
-#     host     = aws_instance.mysql.private_ip
-#   }
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.mysql.private_ip
+  }
 
-#   # terraform copies this file to mongodb server
-#   provisioner "file" {
-#     source = "bootstrap.sh"
-#     destination = "/tmp/bootstrap.sh"
-#   }
+  # terraform copies this file to mongodb server
+  provisioner "file" {
+    source = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#         "chmod +x /tmp/bootstrap.sh",
-#         "sudo sh /tmp/bootstrap.sh mysql ${var.environment}"
-#     ]
-#   }
-# }
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /tmp/bootstrap.sh",
+        "sudo sh /tmp/bootstrap.sh mysql ${var.environment}"
+    ]
+  }
+}
 
 # MONGODB R53 RECORD 
 
@@ -193,30 +193,30 @@ resource "aws_route53_record" "mongodb" {          # sess-42
 
 # # REDIS R53 RECORD
 
-# resource "aws_route53_record" "redis" {            # sess-42
-#   zone_id = var.zone_id
-#   name    = "redis-${var.environment}.${var.domain_name}" # redis-dev.daws86s.fun
-#   type    = "A"
-#   ttl     = 1
-#   records = [aws_instance.redis.private_ip]
-#   allow_overwrite = true
-# }
-# # MYSQL R53 RECORD
-# resource "aws_route53_record" "mysql" {                # sess-42
-#   zone_id = var.zone_id
-#   name    = "mysql-${var.environment}.${var.domain_name}" # mysql-dev.daws86s.fun
-#   type    = "A"
-#   ttl     = 1
-#   records = [aws_instance.mysql.private_ip]
-#   allow_overwrite = true
-# }
+resource "aws_route53_record" "redis" {            # sess-42
+  zone_id = var.zone_id
+  name    = "redis-${var.environment}.${var.domain_name}" # redis-dev.daws86s.fun
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.redis.private_ip]
+  allow_overwrite = true
+}
+# MYSQL R53 RECORD
+resource "aws_route53_record" "mysql" {                # sess-42
+  zone_id = var.zone_id
+  name    = "mysql-${var.environment}.${var.domain_name}" # mysql-dev.daws86s.fun
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.mysql.private_ip]
+  allow_overwrite = true
+}
 
-# # RABBITMQ R53 RECORD
-# resource "aws_route53_record" "rabbitmq" {             # sess-42
-#   zone_id = var.zone_id
-#   name    = "rabbitmq-${var.environment}.${var.domain_name}" # rabbitmq-dev.daws86s.fun
-#   type    = "A"
-#   ttl     = 1
-#   records = [aws_instance.rabbitmq.private_ip]
-#   allow_overwrite = true
-# }
+# RABBITMQ R53 RECORD
+resource "aws_route53_record" "rabbitmq" {             # sess-42
+  zone_id = var.zone_id
+  name    = "rabbitmq-${var.environment}.${var.domain_name}" # rabbitmq-dev.daws86s.fun
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.rabbitmq.private_ip]
+  allow_overwrite = true
+}
