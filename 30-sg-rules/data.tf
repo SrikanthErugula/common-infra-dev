@@ -3,9 +3,9 @@ data "aws_ssm_parameter" "backend_alb_sg_id" {                              #1 C
 }
 
 
-# data "aws_ssm_parameter" "frontend_alb_sg_id" {                             # 9 sess-45
-#   name = "/${var.project_name}/${var.environment}/frontend_alb_sg_id"
-# }
+data "aws_ssm_parameter" "frontend_alb_sg_id" {                             # 9 sess-45
+  name = "/${var.project_name}/${var.environment}/frontend_alb_sg_id"
+}
 
 data "aws_ssm_parameter" "bastion_sg_id" {                                      #2  CL-39
   name = "/${var.project_name}/${var.environment}/bastion_sg_id"

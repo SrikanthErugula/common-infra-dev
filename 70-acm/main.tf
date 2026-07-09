@@ -1,5 +1,5 @@
 # sess -45
-
+#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate
 # for certificate creation 
 resource "aws_acm_certificate" "roboshop" {
   domain_name       = "*.${var.domain_name}"

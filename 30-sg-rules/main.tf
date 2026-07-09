@@ -293,16 +293,16 @@ resource "aws_security_group_rule" "backend_alb_bastion" {    # sess-39- C-11   
 #   to_port           = 80
 # }
 
-# # ##### Frontend ALB SG RUles #####
-# # frnt-alb should accept traffic or connecction from public or laptop on port 443
-# resource "aws_security_group_rule" "frontend_alb_public" {                           # 9 sess-45
-#   type              = "ingress"   
-#   security_group_id = local.frontend_alb_sg_id
-#   cidr_blocks = ["0.0.0.0/0"]
-#   from_port         = 443
-#   protocol          = "tcp"
-#   to_port           = 443
-# }
+# ##### Frontend ALB SG RUles #####
+# frnt-alb should accept traffic or connecction from public or laptop on port 443
+resource "aws_security_group_rule" "frontend_alb_public" {                           # 9 sess-45
+  type              = "ingress"   
+  security_group_id = local.frontend_alb_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 443
+  protocol          = "tcp"
+  to_port           = 443
+}
 
 
 # ##### Bastion SG Rules #####

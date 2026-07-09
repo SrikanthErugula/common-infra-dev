@@ -68,7 +68,7 @@ resource "aws_lb_target_group" "catalogue" {            # sess-43
   port     = 8080
   protocol = "HTTP"
   vpc_id   = local.vpc_id
-  deregistration_delay = 60 # waiting period before deleting the instance,
+  deregistration_delay = 60 # waiting period before deleting the instance, Notice period
 
   health_check { # these are IMP
     healthy_threshold = 2   # fast response
@@ -137,7 +137,7 @@ resource "aws_autoscaling_group" "catalogue" {                       # sess-43
   max_size                  = 10
   min_size                  = 1
   health_check_grace_period = 100
-  health_check_type         = "ELB"
+  health_check_type         = "ELB" #defalut value
   desired_capacity          = 1 # 2 iste two servers and 4 iste servers creating 
   force_delete              = false # not required by defalut vundhi in syntax
   launch_template {
@@ -180,7 +180,7 @@ resource "aws_autoscaling_group" "catalogue" {                       # sess-43
 resource "aws_autoscaling_policy" "catalogue" {            # sess-43
   autoscaling_group_name = aws_autoscaling_group.catalogue.name 
   name                   = "${local.common_name_suffix}-catalogue"
-  policy_type            = "TargetTrackingScaling"
+  policy_type            = "TargetTrackingScaling"  
 
   target_tracking_configuration {
     predefined_metric_specification {
@@ -192,9 +192,10 @@ resource "aws_autoscaling_policy" "catalogue" {            # sess-43
 }
 
 # ALB-RULE
+#https://registry.terraform.io/providers/-/aws/latest/docs/resources/lb_listener_rule
 
 resource "aws_lb_listener_rule" "catalogue" {              # sess-43
-  listener_arn = local.backend_alb_listener_arn
+  listener_arn = local.backend_alb_listener_arn  # it comes from 50-backend_alb from parameter store
   priority     = 10
 
   action {

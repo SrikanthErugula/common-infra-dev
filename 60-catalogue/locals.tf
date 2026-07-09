@@ -1,7 +1,7 @@
 locals {
   common_name_suffix = "${var.project_name}-${var.environment}" # roboshop-dev      #sess-42
   private_subnet_id = split("," , data.aws_ssm_parameter.private_subnet_ids.value)[0]     #sess-42
-   private_subnet_ids = split("," , data.aws_ssm_parameter.private_subnet_ids.value)      # sess-43
+   private_subnet_ids = split("," , data.aws_ssm_parameter.private_subnet_ids.value)      # sess-43  for ASG creation
   ami_id = data.aws_ami.devops.id                                                       #sess-42
   catalogue_sg_id = data.aws_ssm_parameter.catalogue_sg_id.value                   #sess-42,-43
   vpc_id = data.aws_ssm_parameter.vpc_id.value                                          #sess -43
