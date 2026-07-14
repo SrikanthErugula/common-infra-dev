@@ -5,9 +5,9 @@ component=$1
 environment=$2
 dnf install ansible -y
 
-REPO_URL=https://github.com/daws-86s/ansible-roboshop-roles-tf.git
+REPO_URL=https://github.com/SrikanthErugula/ansible-robo-roles.tf.git
 REPO_DIR=/opt/roboshop/ansible
-ANSIBLE_DIR=ansible-roboshop-roles-tf
+ANSIBLE_DIR=ansible-robo-roles.tf
 
 mkdir -p $REPO_DIR
 mkdir -p /var/log/roboshop/
@@ -26,4 +26,4 @@ else
     cd $ANSIBLE_DIR
 fi
 echo "environment is: $2"
-ansible-playbook -e component=$component -e env=$environment main.yaml
+ansible-playbook -e component=$component -e env=$environment all-start-code.yaml

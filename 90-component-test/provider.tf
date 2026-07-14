@@ -19,16 +19,3 @@ provider "aws" {
   region = "us-east-1"
 }
 
-## backend ani pettakunda iste adhi local lo velli store avuthundhi...
-
-
-# actual CMD is as per doc
-
-# terraform {
-#   backend "s3" {
-#     bucket       = "example-bucket"
-#     key          = "path/to/state"
-#     use_lockfile = true
-#     region       = "us-east-1"
-#   }
-# }
