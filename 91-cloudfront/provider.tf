@@ -1,5 +1,3 @@
-
-
 terraform {
   required_providers {
     aws = {
@@ -10,14 +8,9 @@ terraform {
 
   backend "s3" { # backend ante remote store ani anukovali
     bucket = "dsoaws-remote-store"
-    key    = "dev-infra-vpn" # so here keys must be not for the same for all, u have to set name as per the requirement 
+    key    = "infra-coludfont" # so here keys must be not for the same for all, u have to set name as per the requirement 
     region = "us-east-1"
-    use_lockfile = true
+    #use_lockfile = true
     encrypt = true
   }
 }
-
-provider "aws" {
-  region = "us-east-1"
-}
-
